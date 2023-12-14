@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #222222;color: #999999;">
+    <img src="https://avatars.githubusercontent.com/u/130468042?v=4" id="pic" width="200" alt="sir">
+    <p id="foll"></p>
+</body>
+<script>
+     const requestUrl = 'https://api.github.com/users/shusneh'
+     const xhr=new XMLHttpRequest();
+     xhr.open('GET',requestUrl)
+     let data
+     xhr.onreadystatechange=function(){
+        console.log(xhr.readyState)
+        if(xhr.readyState==4){
+         data   =JSON.parse(this.responseText)
+         foll=data.followers
+            console.log(data.followers)
+        }
+        
+     }
+     let foll
+     xhr.send()
+     document.querySelector('#pic').addEventListener('click',function () {
+        document.querySelector('#foll').innerHTML='followers :'+foll;
+     })
+     
+</script>
+</html>
